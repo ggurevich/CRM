@@ -21,10 +21,14 @@ import com.users.beans.User;
 import com.users.beans.UserImage;
 import com.users.repositories.UserImageRepository;
 import com.users.repositories.UserRepository;
+import com.users.security.PermissionService;
 
 @Controller
 public class IndexController {
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
+
+	@Autowired
+	private PermissionService permissionService;
 
 	@Autowired
 	private UserRepository userRepo;
@@ -33,7 +37,8 @@ public class IndexController {
 	private UserImageRepository userImageRepo;
 
 	@RequestMapping("/greeting")
-	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
+	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name,
+			Model model) {
 		model.addAttribute("name", name);
 		model.addAttribute("repoCount", userRepo.count());
 		return "greeting";
@@ -58,6 +63,7 @@ public class IndexController {
 		if (!CollectionUtils.isEmpty(images)) {
 			model.addAttribute("userImage", images.get(0));
 		}
+		model.addAttribute("permissions", permissionService);
 		return "profile";
 	}
 
@@ -65,6 +71,10 @@ public class IndexController {
 	public String profileEdit(@PathVariable long userId, Model model) {
 		model.addAttribute("user", userRepo.findOne(userId));
 
+		if (!permissionService.canEditUser(userId)) {
+			log.warn("Cannot allow user to edit " + userId);
+			return "profile";
+		}
 		List<UserImage> images = userImageRepo.findByUserId(userId);
 		if (!CollectionUtils.isEmpty(images)) {
 			model.addAttribute("userImage", images.get(0));
@@ -73,11 +83,14 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.POST)
-	public String profileSave(@ModelAttribute User user,
-			@PathVariable long userId,
+	public String profileSave(@ModelAttribute User user, @PathVariable long userId,
 			@RequestParam(name = "removeImage", defaultValue = "false") boolean removeImage,
-			@RequestParam("file") MultipartFile file,
-			Model model) {
+			@RequestParam("file") MultipartFile file, Model model) {
+		
+		if (!permissionService.canEditUser(userId)) {
+			log.warn("Cannot allow user to edit " + userId);
+			return "profile";
+		}
 
 		log.debug("Saving user " + user);
 		userRepo.save(user);
@@ -108,4 +121,5 @@ public class IndexController {
 
 		return profile(userId, model);
 	}
+
 }

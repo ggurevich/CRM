@@ -1,0 +1,22 @@
+What do you understand? What parts do you still not understand?
+
+
+	I understand how the app differentiates between admins and users. 
+	
+	What I don't understand is how it hides the edit link on profiles that the user does not have permission to edit.
+
+Maybe pick something that you don't understand and guess what's  going on.
+
+	I believe the edit in the html file is what is hiding the edit link.
+
+
+What questions do you have?
+
+	Did the PermissionService permissionService need to be private and have the @Autowired annotation like the other variables or is that optional?
+	It seemed to work without errors either way.
+
+
+
+How has the app changed?
+
+	The app has changed in that it now requires permissions to perform certain tasks.
