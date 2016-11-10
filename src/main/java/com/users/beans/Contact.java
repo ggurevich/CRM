@@ -6,11 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 //creates a tale for contacts
 @Entity
 @Table(name = "contacts")
 public class Contact {
-	//creates id for each user in contacts
+	// creates id for each user in contacts
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -19,16 +20,22 @@ public class Contact {
 
 	private String firstName;
 	private String lastName;
-	//unique properties for each contact
+	// unique properties for each contact
 	@Column(unique = true)
 	private String email;
 	private String phoneNumber;
 	private boolean active;
 
-	//generic contact
+	// generic contact
 	protected Contact() {
 	}
-	//constructor for contact with properties
+
+	public Contact(long userId) {
+		this.userId = userId;
+
+	}
+
+	// constructor for contact with properties
 	public Contact(long userId, String firstName, String lastName, String email, String phoneNumber, String password,
 			boolean active) {
 		this.userId = userId;
@@ -39,7 +46,7 @@ public class Contact {
 		this.active = active;
 	}
 
-	//creates string with all info
+	// creates string with all info
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email

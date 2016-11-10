@@ -9,8 +9,8 @@ import com.users.repositories.ContactRepository;
 import com.users.repositories.UserRepository;
 
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
-import static com.users.security.Role.USER;
-import static com.users.security.Role.ADMIN;
+import static com.users.security.Role.ROLE_USER;
+import static com.users.security.Role.ROLE_ADMIN;
 
 //@Service specifies intent of a class and its function
 @Service
@@ -45,14 +45,14 @@ public class PermissionService {
 
 	// Allows a profile to be edited only if the profile is that current user or
 	// an admin
-	public boolean canEditUser(long userID) {
+	public boolean canAccessUser(long userID) {
 
-		return hasRole(ADMIN) || (hasRole(USER) && findCurrentUserId() == userID);
+		return hasRole(ROLE_ADMIN) || (hasRole(ROLE_USER) && findCurrentUserId() == userID);
 	}
 
 	// allows a user to edit contacts
 	public boolean canEditContact(long contactId) {
-		return hasRole(USER) && contactRepo.findByUserIdAndId(findCurrentUserId(), contactId) != null;
+		return hasRole(ROLE_USER) && contactRepo.findByUserIdAndId(findCurrentUserId(), contactId) != null;
 	}
 
 }
