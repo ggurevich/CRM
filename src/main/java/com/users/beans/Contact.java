@@ -26,31 +26,38 @@ public class Contact {
 	private String phoneNumber;
 	private boolean active;
 
+	private String twitterHandle;
+	private String facebookUrl;
+
 	// generic contact
 	protected Contact() {
 	}
 
 	public Contact(long userId) {
 		this.userId = userId;
+		this.active = true;
 
 	}
 
 	// constructor for contact with properties
 	public Contact(long userId, String firstName, String lastName, String email, String phoneNumber, String password,
-			boolean active) {
+			boolean active, String twitterHandle, String facebookUrl) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.active = active;
+		this.twitterHandle = twitterHandle;
+		this.facebookUrl = facebookUrl;
 	}
 
 	// creates string with all info
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", phoneNumber=" + phoneNumber + ", active=" + active + "]";
+				+ ", phoneNumber=" + phoneNumber + ", active=" + active + ", twitterHandle=" + twitterHandle
+				+ ", facebookUrl=" + facebookUrl + "]";
 	}
 
 	public long getId() {
@@ -107,6 +114,22 @@ public class Contact {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getTwitterHandle() {
+		return twitterHandle;
+	}
+
+	public void setTwitterHandle(String twitterHandle) {
+		this.twitterHandle = twitterHandle;
+	}
+
+	public String getFacebookUrl() {
+		return facebookUrl;
+	}
+
+	public void setFacebookUrl(String facebookUrl) {
+		this.facebookUrl = facebookUrl;
 	}
 
 }

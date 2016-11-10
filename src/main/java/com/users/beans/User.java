@@ -24,7 +24,12 @@ public class User {
 	private String password;
 	private boolean active;
 
-	protected User() {}
+	private String twitterHandle;
+	private String facebookUrl;
+
+	public User() {
+		active = true;
+	}
 
 	public User(String firstName, String lastName, String email, String phoneNumber, String password, boolean active) {
 		this.firstName = firstName;
@@ -37,7 +42,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", password=" + password + ", active=" + active + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", phoneNumber=" + phoneNumber + ", password=" + password + ", active=" + active + "]";
 	}
 
 	public String getFirstName() {
@@ -94,6 +100,22 @@ public class User {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getTwitterHandle() {
+		return twitterHandle;
+	}
+
+	public void setTwitterHandle(String twitterHandle) {
+		this.twitterHandle = twitterHandle;
+	}
+
+	public String getFacebookUrl() {
+		return facebookUrl;
+	}
+
+	public void setFacebookUrl(String facebookUrl) {
+		this.facebookUrl = facebookUrl;
 	}
 
 }

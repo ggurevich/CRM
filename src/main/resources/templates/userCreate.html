@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layouts/basic">
 <head>
-<title>Contact Edit</title>
+<title>User Create</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <style type="text/css">
@@ -23,47 +23,43 @@ form {
 </style>
 </head>
 <body layout:fragment="content">
-	<h1>Contact</h1>
-	<form th:action="@{|/contact/${contact.id}/edit|}"
-		enctype="multipart/form-data" method="POST">
-		<input name="id" type="hidden" th:value="${contact.id}" />
+	<h1>User</h1>
+	<form th:action="@{|/user/create|}" enctype="multipart/form-data"
+		method="POST">
+		<input name="userId" type="hidden" th:value="${user.userId}" />
 
-		<div class="hidden">
-			<label for="userId">Contact Id</label> <input name="userId"
-				type="text" th:value="${contact.userId}" />
-		</div>
+
+
 		<div class="field">
 			<label for="firstName">First Name</label> <input name="firstName"
-				type="text" th:value="${contact.firstName}" />
+				type="text" th:value="${user.firstName}" />
 		</div>
 
 		<div class="field">
 			<label for="lastName">Last Name</label> <input name="lastName"
-				type="text" th:value="${contact.lastName}" />
+				type="text" th:value="${user.lastName}" />
 		</div>
 
 		<div class="field">
 			<label for="email">Email</label> <input name="email" type="text"
-				th:value="${contact.email}" />
+				th:value="${user.email}" />
 		</div>
-
-
 
 		<div class="field">
 			<label for="phoneNumber">Phone Number</label> <input
-				name="phoneNumber" type="text" th:value="${contact.phoneNumber}" />
+				name="phoneNumber" type="text" th:value="${user.phoneNumber}" />
 		</div>
-		
+
 		<div class="field">
-          <label for="twitterHandle">Twitter Handle</label>
-          <input name="twitterHandle" type="text"  th:value="${contact.twitterHandle}"/>
-        </div>
-        
-        <div class="field">
-          <label for="facebookUrl">Facebook URL</label>
-          <input name="facebookUrl" type="text" th:value="${contact.facebookUrl}"/>
-        </div>
-		
+			<label for="twitterHandle">Twitter Handle</label> <input
+				name="twitterHandle" type="text" th:value="${user.twitterHandle}" />
+		</div>
+
+		<div class="field">
+			<label for="facebookUrl">Facebook URL</label> <input
+				name="facebookUrl" type="text" th:value="${user.facebookUrl}" />
+		</div>
+
 
 		<div class="field">
 			<label for="file">Image</label> <input name="file" type="file" />
@@ -75,7 +71,8 @@ form {
 		</div>
 
 		<input type="submit" th:value="Update" /> <a href="/"
-			th:href="@{|/contact/${contact.id}|}">Back</a>
+			th:href="@{|/user/${user.id}|}">Back</a>
+
 	</form>
 </body>
 </html>
