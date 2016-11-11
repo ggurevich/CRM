@@ -48,3 +48,55 @@ What do you understand?
 What do you not understand?
 
 	Nothing confusing this time.  pretty easy step.
+	
+
+	
+step5
+
+How has the app changed?
+
+	New users can be registered and log in.
+
+What do you understand?
+
+nothing.
+
+
+What do you not understand?
+
+	What changing the one line in SecurityConfiguration.java does.
+	What the changes to the post method for create user actually do.
+	How changing createContact to createUser in IndexController affects creating contacts.  Will need to test to see if creating contacts still possible after logging in.
+
+step6
+
+How has the app changed?
+
+
+What do you understand?
+
+
+
+What do you not understand?
+
+step7
+
+How has the app changed?
+
+
+What do you understand?
+
+
+
+What do you not understand?
+
+step8
+
+How has the app changed?
+
+
+What do you understand?
+
+
+
+What do you not understand?

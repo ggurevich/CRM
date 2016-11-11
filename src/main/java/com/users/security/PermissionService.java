@@ -1,14 +1,18 @@
 package com.users.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import com.users.beans.User;
 import com.users.repositories.ContactRepository;
 import com.users.repositories.UserRepository;
 
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
+
+import java.util.List;
+
 import static com.users.security.Role.ROLE_USER;
 import static com.users.security.Role.ROLE_ADMIN;
 
@@ -24,13 +28,14 @@ public class PermissionService {
 
 	// displays the current user
 	public long findCurrentUserId() {
-		return userRepo.findByEmail(getToken().getName()).get(0).getId();
+		List<User> users = userRepo.findByEmail(getToken().getName());
+		return users != null && !users.isEmpty() ? users.get(0).getId() : -1;
 	}
 
 	// retrieves an authentication token for username and password. displays
 	// context of the user and if they have authentication.
-	private UsernamePasswordAuthenticationToken getToken() {
-		return (UsernamePasswordAuthenticationToken) getContext().getAuthentication();
+	private AbstractAuthenticationToken getToken() {
+		return (AbstractAuthenticationToken) getContext().getAuthentication();
 	}
 
 	// Checks the role of a user and puts out what authority they have if any

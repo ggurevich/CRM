@@ -23,11 +23,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// httpSecurity.authorizeRequests().anyRequest().permitAll();
 
-		httpSecurity.authorizeRequests().antMatchers("/h2-console/**").permitAll().and().authorizeRequests()
-				.antMatchers("/console/**").permitAll().and().authorizeRequests().antMatchers("/login").permitAll()
-				.and().authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.usernameParameter("username").passwordParameter("password").and().logout()
-				.logoutSuccessUrl("/login?logout").and().csrf().disable().headers().frameOptions().disable();
+		httpSecurity
+		.authorizeRequests().antMatchers("/h2-console/**").permitAll()
+		.and()
+		.authorizeRequests().antMatchers("/login", "/register", "/user/create").permitAll()
+		.and()
+		.authorizeRequests().antMatchers("/login").permitAll()
+		.and()
+		.authorizeRequests().anyRequest().authenticated()
+		.and()
+		.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password")
+		.and()
+		.logout().logoutSuccessUrl("/login?logout")
+		.and()
+		.csrf().disable().headers().frameOptions().disable();
 	}
 
 	@Autowired
