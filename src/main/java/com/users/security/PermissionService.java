@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
-
 import com.users.beans.User;
 import com.users.repositories.ContactRepository;
 import com.users.repositories.UserRepository;
@@ -30,6 +29,12 @@ public class PermissionService {
 	public long findCurrentUserId() {
 		List<User> users = userRepo.findByEmail(getToken().getName());
 		return users != null && !users.isEmpty() ? users.get(0).getId() : -1;
+	}
+
+	// this displays a new user by email
+	public User findCurrentUser() {
+		List<User> users = userRepo.findByEmail(getToken().getName());
+		return users != null && !users.isEmpty() ? users.get(0) : new User();
 	}
 
 	// retrieves an authentication token for username and password. displays
@@ -58,6 +63,12 @@ public class PermissionService {
 	// allows a user to edit contacts
 	public boolean canEditContact(long contactId) {
 		return hasRole(ROLE_USER) && contactRepo.findByUserIdAndId(findCurrentUserId(), contactId) != null;
+	}
+
+	// The getToken() is of the class AbstractAuthenticationToken which check
+	// privileges of users.
+	public String getCurrentEmail() {
+		return getToken().getName();
 	}
 
 }
