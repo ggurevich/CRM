@@ -75,7 +75,7 @@ public class IndexController {
 		return "redirect:/";
 	}
 
-	//this will send invites to users to chat or join email chain
+	// this will send invites to users to chat or join email chain
 	@RequestMapping(value = "/email/user", method = RequestMethod.GET)
 	public String prepEmailUser(Model model) {
 		String url = "http://localhost:8080/register/";

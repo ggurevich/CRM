@@ -33,8 +33,9 @@ public class ContactController {
 	@Autowired
 	private ContactImageRepository contactImageRepo;
 
-	/*@Lob
-	public byte[] contactImage;*/
+	/*
+	 * @Lob public byte[] contactImage;
+	 */
 
 	@Autowired
 	private PermissionService permissionService;
@@ -147,11 +148,9 @@ public class ContactController {
 		User user = permissionService.findCurrentUser();
 		Contact contact = contactRepo.findByUserIdAndId(user.getId(), contactId);
 
-		StringBuilder message = new StringBuilder().append("Your friend ")
-				.append(user.getFirstName()).append(" ").append(user.getLastName())
-				.append(" has forwarded you the following contact:\n\n")
-				.append(contact.getFirstName()).append(" ").append(contact.getLastName())
-				.append("\n");
+		StringBuilder message = new StringBuilder().append("Your friend ").append(user.getFirstName()).append(" ")
+				.append(user.getLastName()).append(" has forwarded you the following contact:\n\n")
+				.append(contact.getFirstName()).append(" ").append(contact.getLastName()).append("\n");
 		if (!isNullOrEmpty(contact.getEmail())) {
 			message.append("Email: ").append(contact.getEmail()).append("\n");
 		}

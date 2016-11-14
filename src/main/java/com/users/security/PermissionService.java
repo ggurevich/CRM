@@ -55,14 +55,15 @@ public class PermissionService {
 
 	// Allows a profile to be edited only if the profile is that current user or
 	// an admin
-	public boolean canAccessUser(long userID) {
+	public boolean canAccessUser(long userId) {
 
-		return hasRole(ROLE_ADMIN) || (hasRole(ROLE_USER) && findCurrentUserId() == userID);
+		return hasRole(ROLE_ADMIN) || (hasRole(ROLE_USER) && findCurrentUserId() == userId);
 	}
 
 	// allows a user to edit contacts
 	public boolean canEditContact(long contactId) {
-		return hasRole(ROLE_USER) && contactRepo.findByUserIdAndId(findCurrentUserId(), contactId) != null;
+		return hasRole(ROLE_USER)
+				&& contactRepo.findByUserIdAndId(findCurrentUserId(), contactId) != null;
 	}
 
 	// The getToken() is of the class AbstractAuthenticationToken which check

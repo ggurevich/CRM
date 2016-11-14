@@ -24,8 +24,8 @@ import com.users.security.PermissionService;
 public class EmailService {
 	private static final Logger log = LoggerFactory.getLogger(EmailService.class);
 
-	private final String username = "ggtestgg12345";
-	private final String password = "testme1234";
+	private final String username = "";
+	private final String password = "";
 
 	private Properties props;
 	private Authenticator auth;
@@ -48,10 +48,12 @@ public class EmailService {
 			}
 		};
 	}
-	//returns a boolean based on if the message was successfully sent.
-	//A session is the current activity being taken
-	//MimeMessage is Multipurpose Internet Mail Extensions and supports additional features in email
-	//Transport moves the information somewhere else
+
+	// returns a boolean based on if the message was successfully sent.
+	// A session is the current activity being taken
+	// MimeMessage is Multipurpose Internet Mail Extensions and supports
+	// additional features in email
+	// Transport moves the information somewhere else
 	public boolean sendMessage(Email email) {
 		Session session = Session.getInstance(props, auth);
 		Message message = new MimeMessage(session);

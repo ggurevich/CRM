@@ -70,6 +70,13 @@ What do you not understand?
 
 step6
 
+special notes
+
+	com/sun/mail/util/MailLogger now shows as error instead of com/sun/mail/util/MailLogger
+	when email is sent.  this is after changes were made when comparing code to pauls code.
+	changes made were removing annotations and id from Email.java and changing long userID to long userId in
+	PermissionService.java.  moving to next step.
+
 How has the app changed?
 
 
