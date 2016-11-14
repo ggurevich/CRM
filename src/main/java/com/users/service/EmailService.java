@@ -24,8 +24,8 @@ import com.users.security.PermissionService;
 public class EmailService {
 	private static final Logger log = LoggerFactory.getLogger(EmailService.class);
 
-	private final String username = "ggtestgg12345@gmail.com";
-	private final String password = "testme1234";
+	private final String username = "";
+	private final String password = "";
 
 	private Properties props;
 	private Authenticator auth;
