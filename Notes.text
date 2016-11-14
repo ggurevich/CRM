@@ -1,0 +1,109 @@
+
+Step2
+
+What do you understand? What parts do you still not understand?
+
+
+	I understand how the app differentiates between admins and users. 
+	
+	What I don't understand is how it hides the edit link on profiles that the user does not have permission to edit.
+
+Maybe pick something that you don't understand and guess what's  going on.
+
+	I believe the edit in the html file is what is hiding the edit link.
+
+
+What questions do you have?
+
+	Did the PermissionService permissionService need to be private and have the @Autowired annotation like the other variables or is that optional?
+	It seemed to work without errors either way.
+
+
+
+How has the app changed?
+
+	The app has changed in that it now requires permissions to perform certain tasks.
+
+	
+Step3
+
+What do you understand?
+
+	I understand how the homepage now allows different views based on who is logged in.
+	
+What do you not understand?
+
+	I do not understand how the my profile link allows the user to see their own profile.
+
+step4
+
+How has the app changed?
+
+	The app has changed in that everyone can add facebook and twitter links.
+	
+What do you understand?
+	
+	How to add fields for facebook and twitter urls to profiles.
+	
+What do you not understand?
+
+	Nothing confusing this time.  pretty easy step.
+	
+
+	
+step5
+
+How has the app changed?
+
+	New users can be registered and log in.
+
+What do you understand?
+
+nothing.
+
+
+What do you not understand?
+
+	What changing the one line in SecurityConfiguration.java does.
+	What the changes to the post method for create user actually do.
+	How changing createContact to createUser in IndexController affects creating contacts.  Will need to test to see if creating contacts still possible after logging in.
+
+step6
+
+special notes
+
+	com/sun/mail/util/MailLogger now shows as error instead of com/sun/mail/util/MailLogger
+	when email is sent.  this is after changes were made when comparing code to pauls code.
+	changes made were removing annotations and id from Email.java and changing long userID to long userId in
+	PermissionService.java.  moving to next step.
+
+How has the app changed?
+
+
+What do you understand?
+
+
+
+What do you not understand?
+
+step7
+
+How has the app changed?
+
+
+What do you understand?
+
+
+
+What do you not understand?
+
+step8
+
+How has the app changed?
+
+
+What do you understand?
+
+
+
+What do you not understand?

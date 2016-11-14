@@ -7,43 +7,73 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//creates a tale for contacts
 @Entity
-@Table(name = "users")
-public class User {
-
+@Table(name = "contacts")
+public class Contact {
+	// creates id for each user in contacts
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	private long userId;
+
 	private String firstName;
 	private String lastName;
-
+	// unique properties for each contact
 	@Column(unique = true)
 	private String email;
 	private String phoneNumber;
-	private String password;
 	private boolean active;
 
 	private String twitterHandle;
 	private String facebookUrl;
 
-	public User() {
-		active = true;
+	// generic contact
+	protected Contact() {
 	}
 
-	public User(String firstName, String lastName, String email, String phoneNumber, String password, boolean active) {
+	public Contact(long userId) {
+		this.userId = userId;
+		this.active = true;
+
+	}
+
+	// constructor for contact with properties
+	public Contact(long userId, String firstName, String lastName, String email, String phoneNumber, String password,
+			boolean active, String twitterHandle, String facebookUrl) {
+		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.password = password;
 		this.active = active;
+		this.twitterHandle = twitterHandle;
+		this.facebookUrl = facebookUrl;
 	}
 
+	// creates string with all info
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", phoneNumber=" + phoneNumber + ", password=" + password + ", active=" + active + "]";
+				+ ", phoneNumber=" + phoneNumber + ", active=" + active + ", twitterHandle=" + twitterHandle
+				+ ", facebookUrl=" + facebookUrl + "]";
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	public String getFirstName() {
@@ -76,22 +106,6 @@ public class User {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public boolean isActive() {

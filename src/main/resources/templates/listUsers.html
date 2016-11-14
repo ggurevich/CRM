@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/basic">
+<head>
+<title>Products</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body layout:fragment="content">
+	<h1>Users</h1>
+	<form th:action="@{|/users/search|}" method="POST">
+	   <input type="text" placeholder="Search..." name="search" th:value="${search}" />
+	   <input type="submit" th:value="Search"/>
+	</form> 
+	
+	<a class="btn btn-success" href="/" th:href="@{|/user/create|}" role="button">Create New User</a>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Phone Number</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${users}">
+				<td th:text="${user.firstName}"></td>
+				<td th:text="${user.lastName}"></td>
+				<td th:text="${user.email}"></td>
+				<td th:text="${user.phoneNumber}"></td>
+				<td><a class="btn btn-default" href="/" th:href="@{|/user/${user.id}}" role="button">View</a></td>
+				<td><a class="btn btn-primary" href="/" th:href="@{|/user/${user.id}/edit|}" role="button">Edit</a></td>
+				<td><a class="btn btn-success" href="/" th:href="@{|/user/${user.id}/delete|}" role="button">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/user/create">Create User</a>	
+</body>
+</html>
