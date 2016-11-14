@@ -7,7 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body layout:fragment="content">
-	<h1>Products</h1>
+	<h1>Users</h1>
+	<form th:action="@{|/users/search|}" method="POST">
+	   <input type="text" placeholder="Search..." name="search" th:value="${search}" />
+	   <input type="submit" th:value="Search"/>
+	</form> 
+	
 	<a class="btn btn-success" href="/" th:href="@{|/user/create|}" role="button">Create New User</a>
 	<table class="table table-hover">
 		<thead>

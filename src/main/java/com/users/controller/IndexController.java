@@ -191,4 +191,16 @@ public class IndexController {
 		return profile(savedUser.getId(), model);
 	}
 
+	//needs to be added to controller so users have permission to search
+	 @Secured("ROLE_ADMIN")
+		@RequestMapping(value = "/users/search", method = RequestMethod.POST)
+		public String searchUsers(@RequestParam("search") String search, Model model) {
+			log.debug("Searching by " + search);
+			model.addAttribute("users",
+					userRepo.findByLastNameOrFirstNameOrEmailOrTwitterHandleOrFacebookUrlIgnoreCase(
+							search, search, search, search, search));
+			model.addAttribute("search", search);
+			return "listUsers";
+		}
+
 }
